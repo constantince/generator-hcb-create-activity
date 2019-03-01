@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" style="font-size: 100px;">
+<head>
+  <title><%= project %></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="renderer" content="webkit" />
+	  //缩放比例，使得开发标注同步高保真
+	  const scale = 1 / devicePixelRatio;
+	  document.querySelector('meta[name="viewport"]').setAttribute('content', 'initial-scale=' + scale + ', width=device-width, maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
+	  //取设备基准值，
+	  const changeDevice = function() {
+		const deviceWidth = document.documentElement.clientWidth > 1300 ? 1300 : document.documentElement.clientWidth;
+		document.documentElement.style.fontSize = (deviceWidth / 7.5) + 'px';
+	  };
+	  window.onload = changeDevice;
+	  window.onerror = function(message, url, line, col, error) {
+	  // 直接将错误打印到控制台
+	    console.error("Message : " + message + "\nURL : " + url + "\nLine Number : " + line)
+	 }
+   </script>
+</head>
+<body>
+<noscript>该站点启用了Javascript，请联系管理员开启Javascript功能。</noscript>
+
+<div id="hbc-activity">
+		<img id="logo" src="../assets/img/logo.png" />
+		<div><%=author%></div>
+</div>
+</body>
+</html>
