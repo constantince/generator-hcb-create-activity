@@ -27,14 +27,16 @@
     <small>**2.使用**</small><br />
     <small>新建项目文件夹切换到文件夹目录</small>
 
-    ```javascript
+  ```javascript
+    
         mkdir newfolder && cd newfolder\  
         yo hcb-create-activity
-    ```
+        
+  ```
 
     <small>之后你会看到已经安装的本地脚手架, 此时会看到有一些基础的配置需要你填写:</small>
 
-    ```javascript
+  ```javascript
     Developer: 开发者大名 缺省值(hcbstaff)
     Version:  版本号 缺省值(0.1.1)
     Prefix: 映射api前缀 缺省值(api)
@@ -44,11 +46,12 @@
     Projec*: 项目名称 缺省值(activity)
     Descriptions: 缺省值()
     Email: 缺省值(alberteinstein007@126.com)
-    ```
+    
+  ```
 
  <small>依次填写信息，等待几分钟加载完依赖模块后便可以看到再当前文件夹内生成了一个`package.json`, `webpack.config.js` 以及一个`src`目录，`src`目录结构如下所示：</small>
     
-    ```javascript
+  ```javascript
     ├─api //接口
     ├─assets //资源
     │  └─img //图片
@@ -59,31 +62,31 @@
     │  └─tools
     └─plugs//插件
         └─newplugs
-    ```
+  ```
 
    **<small>3.开发</small>**<br />
    <small>开发流程与之前的开发写业务无异，但也有不同。建议开发者使用模块化开发机制，促进代码重复利用，推荐使用ES6语法。遇到会重复利用的UI，可以将模板存放再plugs目录下. 本地环境执行以下命令搭建本地服务器开始开发。每个页面在js里面都有其对应地入口文件，命名与html文件命名时相同地。在界面地头部引用了`zepto.js`, `$`符号作为全局变量在开发过程中随时调用。</small>
 
-    ```javascript
+  ```javascript
        npm start
-    ```
+  ```
 
     **<small>4. 添加新文件</small>**<br />
 
  <small>遇到多个界面的时候，我们需要用到另外的脚手架`hcb-add-webpack`快速添加模板界面，与使用上面的脚手架时是一样的方法, 切换到src目录下执行生成命令</small>
 
-    ```javascript
+  ```javascript
     cd src/ && yo hcb-add-webpage
-    ```
+  ```
 
  执行之后它立马会在`src/`目录下的 `html` `css` `js` 目录下生成对应的模板文件，然后再对应文件里面进行编码工作就好了。
 
     **<small>5. 发布</small>**<br />
     <small>到了发布环节，我们保存好代码，再根目录下执行以下命令得到打包的前端工程文件</small>
 
-    ```javascript
+  ```javascript
     npm run build
-    ```
+  ```
 
     <small>可以看到生成了以你的项目名称为名字的文件夹，里面包含了所有的静态资源、代码以及依赖模块。直接将它们部署待测试环境测试即可。</small>
 
