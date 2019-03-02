@@ -95,7 +95,7 @@
     <small>测试服务器上需要提交代码，并且提交流程过于频繁，我们建议在本地搭建服务器进行测试。这个在脚手架中利用webpack搭建的本地服务器（默认9000端口）能够帮助我们在本地进行测试调试。调试代码和平时调试的大同小异，可以直接在浏览器中调试。而测试环境因为所有地代码都打包成了静态文件，无法直接在浏览器上调试。这也使得我们必须在本地经过测试稳定后才能够上传代码到测试服务器上。需要注意地是，我们开发环境中用默认用的`api`来替换后台的路由（新建项目时可以自己定义），所以当接口中有`api`这三个字母的话会被替换，这时我们手动修改`webpack.config.js`以适配接口（*例如后台地接口定义为api/route/activity/someinteractions,这时在配置`Prefix`请避免使用默认配置*。当然，在项目开发的前期和后台人员进行有效的沟通可以完全避免这个问题。</small>
 
 - __上传代码__<br />
-<small>该脚手架发布在**[npm](https://www.npmjs.com/settings/constantince/packages)**平台上，代码则托管在**[github](https://github.com/constantince/generator-hcb-create-activity)**上。在后续开发中因为要封装组件，所以建议诸位在上面关注此项目并且适时地将自己地组件和模块推送到github上面， 以帮助该项目的持续更新。推送路径为`app/template/`, 文件命名规则`src_yourfoldername_yourfilename`, 例如:`src_js_tools_newTools.js`,  后台会检测该文件模板生成的路径, 若是找不到文件夹则会新建。</small>
+<small>该脚手架发布在[npm](https://www.npmjs.com/settings/constantince/packages)平台上，代码则托管在[github](https://github.com/constantince/generator-hcb-create-activity)上。在后续开发中因为要封装组件，所以建议诸位在上面关注此项目并且适时地将自己地组件和模块推送到github上面， 以帮助该项目的持续更新。推送路径为`app/template/`, 文件命名规则`src_yourfoldername_yourfilename`, 例如:`src_js_tools_newTools.js`,  后台会检测该文件模板生成的路径, 若是找不到文件夹则会新建。</small>
 
 - __帮助文档以及引用资料__<br /><br />
 1.[脚手架开发流程](https://yeoman.io/authoring/)<br />
