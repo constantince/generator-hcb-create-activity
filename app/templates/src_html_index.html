@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="renderer" content="webkit" />
 	<%if(model){%>
-		<script type="text/javascript">
+	<script type="text/javascript">
 			(function resizeHtmlFontSize(doc, win) {
 					var docEl = doc.documentElement,
 							resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
@@ -22,13 +22,10 @@
 					doc.addEventListener('DOMContentLoaded', recalc, false);
 
 			})(document, window);	
-		</script>
+	</script>
 	<%}%>
-	<%if(useZepto){%>
-		<script src="https://cdn.bootcss.com/zepto/1.0rc1/zepto.min.js"></script>
-	<%}%>
-	<%if(wxApi){%>
-		<script src="http://res2.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+	<%for(let i =0; i<=libraries.length - 1;  i++){%>
+	<script src="<%=libraries[i]%>" type="text/javascript"></script>
 	<%}%>
 </head>
 <body>

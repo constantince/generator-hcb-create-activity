@@ -18,20 +18,32 @@ module.exports = class extends Generator {
         message: 'Developer name',
         default: 'hcb-staff'
       },
-	  //是否使用zepto
-      {
-        type: 'confirm',
-        name: 'useZepto',
-        message: 'Do you want use library zepto',
-        default: true
+	  //选择要使用的库工具
+	  {
+		  type: 'checkbox',
+		  name: 'libraries',
+      message: 'Selecting your library below that you want to including',
+      choices:[{
+        name: 'zepto.js(dom maniplate library)',
+        value: 'https://cdn.bootcss.com/zepto/1.0rc1/zepto.min.js',
+        checked: true
       },
-	   //是否使用微信API
       {
-        type: 'confirm',
-        name: 'wxApi',
-        message: 'Does this page need wx Api',
-        default: false
+        name: 'wxapi.js(wx api)',
+        value: 'http://res2.wx.qq.com/open/js/jweixin-1.4.0.js',
+        checked: false
       },
+      {
+        name: 'juicer.js(html engine)',
+        value: 'https://cdn.bootcss.com/juicer/0.6.15/juicer-min.js',
+        checked: false
+      },
+      {
+        name: 'lodash.js(function library)',
+        value: 'https://cdn.bootcss.com/lodash.js/4.17.12-pre/lodash.core.min.js',
+        checked: false
+      }]
+	  },
 	  //选择开发模式
       {
         type: 'confirm',
@@ -101,6 +113,7 @@ module.exports = class extends Generator {
   }
 
   writing() {
+    console.log(this.props)
     //拷贝模板
     fs.readdir(this.templatePath(), (err, files) => {
       files.forEach(file => {

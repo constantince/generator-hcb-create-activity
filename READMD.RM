@@ -1,4 +1,4 @@
-# 活动开发以及规范说明文档
+﻿# 活动开发以及规范说明文档
 
 - __开发流程分析__ <br />
 <small>前端活动开发属于轻量级的网页应用，需求的功能欠丰富，使用框架反而增加了项目体积。建议继续使用原生js来开发单界面来处理类似应用程序。每个活动都有其共通性，规范化的开发流程会让开发周期变短，同时将代码片段以类似mvvm组件的方式进行拼接组装，做到代码的复用，对后期再开发和维护也减少了相当的成本。因此搭建脚手架进行开发流程的规范，以及利用一些第三方资源模块进行代码上的优化，相信可以节约不少的开发时间。</small>
@@ -40,8 +40,7 @@
     Developer: 开发者大名 缺省值(hcbstaff)
     Version:  版本号 缺省值(0.1.1)
     Prefix: 映射api前缀 缺省值(api)
-    useZepto: 是否使用zepto作为dom操作库,缺省值(true)
-    usewxApi: 该界面主页是否会用到微信api(false)
+    library:('zepto', 'wxapi', 'juicer', 'lodash')//选择cnd库，加入你需要的库到页面中来。i 健反选，空格选中/取消来。
     model:是否未移动开发模式（true）默认适配网页宽度，采用rem布局
     TestDomain: 测试环境域名 缺省值(http://apptest.hcbkeji.com)
     ProDomain: 正式环境域名 缺省值(http://app.hcbkeji.com)
