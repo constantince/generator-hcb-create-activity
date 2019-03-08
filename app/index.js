@@ -4,12 +4,40 @@ const fs = require('fs');
 module.exports = class extends Generator {
   async prompting() {
     const prompts = [
+       //项目名称
+       {
+        type: 'input',
+        name: 'project',
+        message: 'Please input your project name',
+        default: 'activity'
+      },
       //开发人员名称
       {
         type: 'input',
         name: 'author',
         message: 'Developer name',
         default: 'hcb-staff'
+      },
+	  //是否使用zepto
+      {
+        type: 'confirm',
+        name: 'useZepto',
+        message: 'Do you want use library zepto',
+        default: true
+      },
+	   //是否使用微信API
+      {
+        type: 'confirm',
+        name: 'wxApi',
+        message: 'Does this page need wx Api',
+        default: false
+      },
+	  //选择开发模式
+      {
+        type: 'confirm',
+        name: 'model',
+        message: 'You are developing in Phone?',
+        default: true
       },
       //版本号
       {
@@ -46,27 +74,24 @@ module.exports = class extends Generator {
         message: 'PhpRoute',
         default: 'php/option/activity'
       },
-      //项目名称
       {
         type: 'input',
         name: 'project',
         message: 'Please input your project name',
         default: 'activity'
       },
-      //项目描述
       {
         type: 'input',
         name: 'description',
-        message: 'Descriptions',
-        default: 'no descriptions'
+        message: 'give your project some descriptions',
+        default: '...'
       },
-      //个人邮件地址
       {
         type: 'input',
         name: 'email',
-        message: 'Email',
-        default: 'alberteinstein007@126.com'
-      }
+        message: 'your email address',
+        default: 'hcb@abc.com'
+      },
     ];
 
     return this.prompt(prompts).then(props => {
