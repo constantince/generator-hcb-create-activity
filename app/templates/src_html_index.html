@@ -35,5 +35,37 @@
 		<img id="logo" src="../assets/img/logo.png" />
 		<div><%=author%></div>
 </div>
+ <script type="text/javascript">
+      //iOS用于js交互必备代码：
+      function setupWebViewJavascriptBridge(callback) {
+      if (window.WebViewJavascriptBridge) {
+        return callback(WebViewJavascriptBridge);
+      }
+      if (window.WVJBCallbacks) {
+        return window.WVJBCallbacks.push(callback);
+      }
+      window.WVJBCallbacks = [callback];
+      var WVJBIframe = document.createElement('iframe');
+      WVJBIframe.style.display = 'none';
+      WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
+      document.documentElement.appendChild(WVJBIframe);
+      setTimeout(function() {
+        document.documentElement.removeChild(WVJBIframe)
+      }, 0)
+    }
+    //安卓和ios回调函数
+    function shareCallback(res) { //Android:[true,  false] // IOS: [1, 0]
+       if(res) {
+         alert('分享成功！')
+       }
+    }
+
+    setupWebViewJavascriptBridge(function(bridge) {
+      bridge.registerHandler('shareCallback', function(data, responseCallback) {
+        //IOS 分享成功返回“1”
+        shareCallback(success === "1");
+      });
+    });
+</script>
 </body>
 </html>

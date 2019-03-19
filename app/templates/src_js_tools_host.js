@@ -1,12 +1,16 @@
-﻿const userAgents = navigator.userAgent;
+﻿const userAgents = window.navigator.userAgent.toLowerCase();
 
 const Host = {
-	//判断是否未安卓app客户端
-	isAndriodApp: typeof window.HcbFunction !== 'undefined',
-	//是否未微信客户端打开
-	isWechat: typeof WeixinJSBridge !== 'undefined',
-	//移动客户端打开
-	//isMobile: !!userAgents.match(/AppleWebKit.*Mobile.*/),
+	//安卓app客户端
+	isAndriodApp: () => typeof window.HcbFunction !== 'undefined',
+	//微信客户端
+	isWechat: () => userAgents.indexOf('micromessenger') > -1,
+	//IOS客户端打开
+	isIosApp: () => typeof window.WebViewJavascriptBridge !== 'undefined',
+	//是否再app内打开
+	isInApp () {
+		return	this.isAndriodApp() || this.isIosApp()
+	},
 	//分享出去
 	/* config: 
 		{
@@ -22,17 +26,23 @@ const Host = {
 	            }
 	        }
 	*/
-	share ({link, title, imgUrl, desc, success, cancel} = {}) {
-		const shareCallBack = success || function() {};
-		if(this.isAndriodApp) {
-			window.HcbFunction.jsShareToFriend( link, imgUrl, title, desc, 'shareCallBack');
-		} else if(typeof wx !== 'undefined'){
-			wx.onMenuShareAppMessage({link, title, imgUrl, desc, success, cancel});
-		} else {
-			console.warn('No host object');
-		}
-		
-	}
-}
+	share ({link, title, imgUrl, desc, success, cancel, type} = {}, banWxCallback) {
+		if(this.isAndriodApp()) {
+			window.HcbFunction.jsShareToFriend( link, imgUrl, title, desc, 'shareCallback');
+		} else if(typeof wx !== 'undefined' && this.isWechat()){
+			//如果微信中不需要分享
+			if(banWxCallback) {
+				return banWxCallback();
+			}
+			imgUrl = encodeURICompoenent(imgUrl);
+			wx.onMenuShareAppMessage({link, title, imgUrl, type, desc, success, cancel});
+		} else if(this.isIosApp()){
+			WebViewJavascriptBridge.callHandler('jsShareToFriend', `link:${link};imgUrl:${imgUrl};title:${title};desc:${desc}`, function(response) {});
 
+		}  else {
+			alert('未知宿主环境，请确认打开的环境！\n目前支持打开的环境: 货车宝APP、微信');
+		}
+}
+		
+}
 export default Host;

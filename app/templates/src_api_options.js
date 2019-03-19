@@ -1,14 +1,18 @@
 
 const option_api = {
-    chevron_report_activity: 'chevron_report_activity'
+    share: '/notice/home/share',
+    draw: '/notice/prize/draw',
+    prize: '/notice/my/prize',
+    roll: '/notice/prize/roll', 
+    addPoint: '/activity/click'//´òµã
 };
 
-const PRE = process.env.NODE_ENV === 'production' ? '<%=phpRoute%>' : '<%=prefix%>';
+// console.log(process.env.NODE_ENV);
 
 const handlerUlrPreSuffix = apis => {
     let new_apis_object = {};
     for(let key in apis) {
-        new_apis_object[key] = `/${PRE}/${apis[key]}.php`
+        new_apis_object[key] = `/<%=prefix%>/index.php/?s=${apis[key]}`;
     }
     return new_apis_object;
 };

@@ -4,7 +4,23 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
 var glob = require('glob');
-const isProd = process.env.NODE_ENV;
+const env = process.env.NODE_ENV;
+const isProd = env === 'production';
+
+const proxyLink = {
+    'production': '<%=proDomain%>',
+    'development': '<%=testDomain%>',
+    'none': '<%=testDomain%>'
+}
+var getHtmlConfig = function (name, chunks) {
+    return {
+        template: `./src/html/${name}.html`,
+        filename: `${name}.html`,
+        inject: true,
+        hash: false,
+        chunks: [name]
+    }
+}
 
 var getHtmlConfig = function (name, chunks) {
     return {
@@ -33,7 +49,7 @@ function getEntry() {
 }
 
 module.exports = {
-    mode: "development",//development|production|none
+    mode: env,//development|production|none
     entry: getEntry(),
     output: {
         path: path.resolve(__dirname, '<%=project%>'),
@@ -64,6 +80,7 @@ module.exports = {
         contentBase: './<%=project%>/', //告诉dev 在哪里查找更新的文件
         port: 9000,
         hot: true,
+		host: '<%=host%>',
         proxy: {
             '/<%=prefix%>': {
               target: isProd ? '<%=proDomain%>' : '<%=testDomain%>',

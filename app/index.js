@@ -18,6 +18,13 @@ module.exports = class extends Generator {
         message: 'Developer name',
         default: 'hcb-staff'
       },
+       //开发人员名称
+       {
+        type: 'input',
+        name: 'host',
+        message: 'Local enviroment ip',
+        default: 'localhost'
+      },
 	  //选择要使用的库工具
 	  {
 		  type: 'checkbox',
@@ -63,20 +70,20 @@ module.exports = class extends Generator {
         type: 'input',
         name: 'prefix',
         message: 'Prefix',
-        default: 'api'
+        default: 'api2'
       },
-      //测试环境域名
+      //测试环境代理域名
       {
         type: 'input',
         name: 'testDomain',
-        message: 'TestDomain',
+        message: 'TestDomain proxy address',
         default: 'http://apptest.hcbkeji.com'
       },
       //正式环境域名
       {
         type: 'input',
         name: 'proDomain',
-        message: 'ProDomain',
+        message: 'ProDomain proxy address',
         default: 'http://app.hcbkeji.com'
       },
       //中间活动action以及路由
