@@ -32,22 +32,17 @@ module.exports = class extends Generator {
       message: 'Selecting your library below that you want to including',
       choices:[{
         name: 'zepto.js(dom maniplate library)',
-        value: 'https://cdn.bootcss.com/zepto/1.0rc1/zepto.min.js',
+        value: 'http://app.hcbkeji.com/activity/HcbCdnScripts/zepto.js',
         checked: true
       },
       {
         name: 'wxapi.js(wx api)',
-        value: 'http://res2.wx.qq.com/open/js/jweixin-1.4.0.js',
+        value: 'http://app.hcbkeji.com/activity/HcbCdnScripts/wx.js',
         checked: false
       },
       {
         name: 'juicer.js(html engine)',
-        value: 'https://cdn.bootcss.com/juicer/0.6.15/juicer-min.js',
-        checked: false
-      },
-      {
-        name: 'lodash.js(function library)',
-        value: 'https://cdn.bootcss.com/lodash.js/4.17.12-pre/lodash.core.min.js',
+        value: 'http://app.hcbkeji.com/activity/HcbCdnScripts/juicer.js',
         checked: false
       }]
 	  },
@@ -70,7 +65,7 @@ module.exports = class extends Generator {
         type: 'input',
         name: 'prefix',
         message: 'Prefix',
-        default: 'api2'
+        default: '/hcb'
       },
       //测试环境代理域名
       {
@@ -89,21 +84,15 @@ module.exports = class extends Generator {
       //中间活动action以及路由
       {
         type: 'input',
-        name: 'phpRoute',
-        message: 'PhpRoute',
-        default: 'php/option/activity'
-      },
-      {
-        type: 'input',
-        name: 'project',
-        message: 'Please input your project name',
-        default: 'activity'
+        name: 'localDomain',
+        message: 'localDomain',
+        default: 'http://snsapp.hcbkeji.com'
       },
       {
         type: 'input',
         name: 'description',
-        message: 'give your project some descriptions',
-        default: '...'
+        message: 'Descript your project info',
+        default: 'activity'
       },
       {
         type: 'input',

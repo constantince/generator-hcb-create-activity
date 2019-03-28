@@ -10,7 +10,7 @@ const isProd = env === 'production';
 const proxyLink = {
     'production': '<%=proDomain%>',
     'development': '<%=testDomain%>',
-    'none': '<%=testDomain%>'
+    'none': '<%=localDomain%>'
 }
 var getHtmlConfig = function (name, chunks) {
     return {
@@ -83,8 +83,7 @@ module.exports = {
 		host: '<%=host%>',
         proxy: {
             '/<%=prefix%>': {
-              target: isProd ? '<%=proDomain%>' : '<%=testDomain%>',
-              pathRewrite: {'^/<%=prefix%>' : '/<%=phpRoute%>/'},
+              target: proxyLink[env],
               changeOrigin: true
             }
         }

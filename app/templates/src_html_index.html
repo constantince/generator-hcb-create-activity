@@ -28,7 +28,7 @@
 	<script src="<%=libraries[i]%>" type="text/javascript"></script>
 	<%}%>
 </head>
-<body>
+<body style="visibility: hidden;">
 <noscript>该站点启用了Javascript，请联系管理员开启Javascript功能。</noscript>
 
 <div id="hbc-activity">
@@ -56,7 +56,7 @@
     //安卓和ios回调函数
     function shareCallback(res) { //Android:[true,  false] // IOS: [1, 0]
        if(res) {
-         alert('分享成功！')
+        //  alert('分享成功！')
        }
     }
 

@@ -1,7 +1,7 @@
 class Tips {
     constructor(p) {
         this.opts = {
-            duration: 300,
+            duration: 3000,
             text: 'hello',
             ...p
         }
@@ -11,7 +11,7 @@ class Tips {
             border-radius: 0.05rem;
             color: white;
             position: absolute;
-            top: 0.5rem;
+            top: 50%;
             left: 50%;
             font-size: .2rem;
             transform: translateX(-50%);
@@ -19,7 +19,7 @@ class Tips {
             line-height: 0.6rem;
             z-index: 999;
             display: none;
-            padding: 0 0.1rem;
+            padding: .1rem 1rem;
             max-width: 80%;`
 
 
@@ -29,7 +29,7 @@ class Tips {
         $('body').append(this.el);
     }
 
-    show(text) {
+    show(text, callback) {
         if(this.timer) return;
         if(!text) {
             text = this.opts.text;
@@ -40,6 +40,7 @@ class Tips {
             this.el.hide();
             clearTimeout(this.timer);
             this.timer = null;
+            callback && callback();
         }, this.opts.duration);
         
     }

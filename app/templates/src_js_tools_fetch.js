@@ -1,11 +1,14 @@
 import axios from 'axios';
 import {getRequest} from  './tools';
+import Tips from './../plugs/tips';
+
+const params = ['phone', 'authtoken', 'authm', 'ver', 'key', 'platform'];
 
 const getHttpRequestSessions = (name) => {
     if(!sessionStorage.getItem(name)) {
         const urlParams = getRequest();
         if(!urlParams[name]) {
-            return alert(`can not find <${name}> in url and Cookie, please check your http address!`);
+            return console.log(`can not find params:%c ${name}`, 'font-size:14px;color:red; font-weight:bold;');
         }
         sessionStorage.setItem(name, urlParams[name]);
         return urlParams[name]
@@ -14,8 +17,23 @@ const getHttpRequestSessions = (name) => {
     }
 }
 
+const tips = new Tips();
+
+const unionParams = (p) => p.map(v => ({[v] : getHttpRequestSessions(v)}));
+
 const setCookiesToData = (data = {}) => {
-    return Object.assign(data, {uid: getHttpRequestSessions('user'), phone: getHttpRequestSessions('phone')})
+    return Object.assign({
+        uid: getHttpRequestSessions('user'),
+    }, ...unionParams(params), data);
+}
+
+const showBody = () => {
+    const body = document.body;
+    if(body.style.visibility === 'initial') return;
+    setTimeout(function(){
+        body.style.visibility = 'initial';
+    }, 0)
+    
 }
 
 const request = (url, params, data = {}, options) => new Promise((resolve, reject) => { 
@@ -25,9 +43,10 @@ const request = (url, params, data = {}, options) => new Promise((resolve, rejec
             } else {
                 reject(res.data.msg);
             }
-            
+            showBody();
         }).catch(ex => {
-            alert(ex);
+            tips.show('<*-*!>' + ex);
+            showBody();
         });
     }
 );

@@ -1,18 +1,14 @@
 
 const option_api = {
-    share: '/notice/home/share',
-    draw: '/notice/prize/draw',
-    prize: '/notice/my/prize',
-    roll: '/notice/prize/roll', 
-    addPoint: '/activity/click'//´òµã
+    add_point: '/activity/click'
 };
 
-// console.log(process.env.NODE_ENV);
+const prefix = process.env.NODE_ENV === 'production' ? '' : '<%=prefix%>';
 
 const handlerUlrPreSuffix = apis => {
     let new_apis_object = {};
     for(let key in apis) {
-        new_apis_object[key] = `/<%=prefix%>/index.php/?s=${apis[key]}`;
+        new_apis_object[key] = `${prefix}/api2/index.php/?s=${apis[key]}`;
     }
     return new_apis_object;
 };
