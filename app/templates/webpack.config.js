@@ -82,8 +82,9 @@ module.exports = {
         hot: true,
 		host: '<%=host%>',
         proxy: {
-            '/<%=prefix%>': {
+            '<%=prefix%>': {
               target: proxyLink[env],
+              pathRewrite: { '^<%=prefix%>': '' },
               changeOrigin: true
             }
         }
